@@ -1,0 +1,27 @@
+# OpsForms — Changelog de Desenvolvimento
+
+## 2026-09-16
+
+### Adicionado
+- Estrutura de memória persistente do projeto em `docs/`.
+- `PROJECT_MEMORY.md`, `CHANGELOG_DEV.md` e `NEXT.md`.
+
+### Alterado
+- `README.md` alinhado ao código atual: 6 formulários, módulos `sitop-sondador.js` e `comunicado-evento.js`, pasta `docs/` e checklist de regressão com os 6 formulários.
+- Nenhum comportamento funcional da aplicação foi alterado nesta rodada.
+
+### Corrigido
+- Iniciada consolidação da documentação com base no código atualmente registrado em `main`.
+
+### Arquivos afetados
+- `README.md`
+- `docs/PROJECT_MEMORY.md`
+- `docs/CHANGELOG_DEV.md`
+- `docs/NEXT.md`
+
+### Motivo
+- Evitar perda de contexto técnico entre sessões e permitir continuidade do desenvolvimento sem depender de memória de conversa.
+- Tornar decisões, estado atual e próximo passo versionáveis junto com o código.
+
+### Baseline
+- `main`, commit `e87e475`, validado em 2026-09-16 antes da criação desta documentação.

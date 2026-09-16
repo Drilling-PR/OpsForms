@@ -6,12 +6,14 @@ Não usa servidor, backend ou banco de dados. Roda como HTML/CSS/JS puro e pode 
 
 ## Reportes disponíveis
 
-Atualmente existem 4 reportes funcionais:
+Atualmente existem 6 reportes funcionais:
 
 1. **SITOP - Fiscalização**
 2. **SITOP - Supervisor**
-3. **Caça-Desvio**
-4. **Captura de Evento / Lições Aprendidas**
+3. **SITOP - Sondador**
+4. **Caça-Desvio**
+5. **Comunicado de Evento**
+6. **Captura de Evento / Lições Aprendidas**
 
 O rascunho dos formulários é salvo no navegador via `localStorage`.
 
@@ -23,6 +25,10 @@ O rascunho dos formulários é salvo no navegador via `localStorage`.
 OpsForms/
 ├── index.html
 ├── README.md
+├── docs/
+│   ├── PROJECT_MEMORY.md
+│   ├── CHANGELOG_DEV.md
+│   └── NEXT.md
 ├── css/
 │   └── style.css
 └── js/
@@ -31,9 +37,11 @@ OpsForms/
     ├── storage.js
     ├── utils.js
     └── forms/
+        ├── comunicado-evento.js
         ├── desvio.js
         ├── evento.js
         ├── sitop.js
+        ├── sitop-sondador.js
         └── sitop-supervisor.js
 ```
 
@@ -138,8 +146,10 @@ Cada arquivo dentro desta pasta concentra a lógica específica de um relatório
 | Arquivo | Relatório | Responsabilidade |
 |---|---|---|
 | `sitop.js` | SITOP - Fiscalização | Geração do texto do SITOP Fiscal e regras específicas do formulário |
-| `sitop-supervisor.js` | SITOP - Supervisor | Geração do texto, turmas embarcadas, atividades condicionais, datas de teste, PRONTOS e incidentes |
+| `sitop-supervisor.js` | SITOP - Supervisor | Geração do texto, turmas embarcadas, atividades condicionais, PRONTOS e incidentes |
+| `sitop-sondador.js` | SITOP - Sondador | Geração do registro de 6 h e linha do tempo em intervalos de 15 min |
 | `desvio.js` | Caça-Desvio | Geração do texto do reporte de desvio |
+| `comunicado-evento.js` | Comunicado de Evento | Geração do comunicado rápido de ocorrência |
 | `evento.js` | Captura de Evento / Lições Aprendidas | Geração do texto de eventos, criticidade e campos condicionais |
 
 ---
@@ -359,11 +369,13 @@ Antes de subir qualquer alteração:
 git status
 ```
 
-Teste os 4 relatórios atuais:
+Teste os 6 relatórios atuais:
 
 - SITOP - Fiscalização;
 - SITOP - Supervisor;
+- SITOP - Sondador;
 - Caça-Desvio;
+- Comunicado de Evento;
 - Captura de Evento / Lições Aprendidas.
 
 Depois faça:
