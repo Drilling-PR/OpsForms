@@ -1,5 +1,21 @@
 # OpsForms — Changelog de Desenvolvimento
 
+## 2026-09-16 — Caça-Desvio: identificação do colaborador
+
+### Adicionado
+- Campos **Nome** e **Matrícula** no cabeçalho do Caça-Desvio, logo após Área/Sistema e Data/Hora.
+- Nome e matrícula também passam a constar no texto gerado para WhatsApp/Teams.
+
+### Arquivos afetados
+- `index.html`
+- `js/forms/desvio.js`
+- `docs/PROJECT_MEMORY.md`
+- `docs/CHANGELOG_DEV.md`
+- `docs/NEXT.md`
+
+### Motivo
+- Identificar o colaborador relacionado ao registro de Caça-Desvio diretamente no formulário e no reporte gerado.
+
 ## 2026-09-16
 
 ### Adicionado

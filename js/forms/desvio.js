@@ -27,7 +27,9 @@
     text += `• *Sonda:* ${value('desvio_sonda') || '-'}\n`;
     text += `• *Poço:* ${value('desvio_poco') || '-'}\n`;
     text += `• *Área / Sistema:* ${value('desvio_areaSistema') || '-'}\n`;
-    text += `• *Data / Hora:* ${formatDateTimeBR(value('desvio_dataHora')) || '-'}\n\n`;
+    text += `• *Data / Hora:* ${formatDateTimeBR(value('desvio_dataHora')) || '-'}\n`;
+    text += `• *Nome:* ${value('desvio_nome') || '-'}\n`;
+    text += `• *Matrícula:* ${value('desvio_matricula') || '-'}\n\n`;
 
     text += `*Desvio identificado:*\n${value('desvio_desvio') || '-'}\n\n`;
     text += `*Risco associado:*\n${value('desvio_risco') || '-'}\n\n`;
