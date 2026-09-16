@@ -294,10 +294,13 @@
       updateOutput();
     });
 
-    bindClick('addSondadorTimelineBtn', () => {
-      sitopSondador.addTimelineItem();
+    const addSondadorTimelineAndFocus = () => {
+      sitopSondador.addTimelineItem({}, { focus: true });
       updateOutput();
-    });
+    };
+
+    bindClick('addSondadorTimelineBtn', addSondadorTimelineAndFocus);
+    bindClick('addSondadorTimelineBottomBtn', addSondadorTimelineAndFocus);
 
     bindClick('copyTopBtn', openWhatsApp);
     bindClick('copyBottomBtn', openWhatsApp);

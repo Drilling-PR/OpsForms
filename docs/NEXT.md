@@ -1,19 +1,19 @@
 # OpsForms — Próximos passos
 
 ## Objetivo atual
-Adicionar **Nome** e **Matrícula** ao cabeçalho do Caça-Desvio e ao texto gerado.
+Melhorar o fluxo de inclusão de atividades na linha do tempo do **SITOP Sondador** quando existem muitas linhas no turno.
 
 ## Em andamento
-- Campos `desvio_nome` e `desvio_matricula` adicionados ao cabeçalho do Caça-Desvio no `Repo_Live`.
-- Output do Caça-Desvio atualizado para incluir Nome e Matrícula.
-- Memória e changelog atualizados no workspace.
+- Segundo botão **Adicionar linha** incluído ao final da lista.
+- Botões superior e inferior criam a linha e direcionam o foco para o campo **Início** da nova atividade.
+- Alteração limitada ao fluxo do SITOP Sondador, sem mudança no formato do relatório ou na persistência.
 
 ## Próximo passo
-Sincronizar esta alteração do `Repo_Live` para o repositório local, revisar `git diff`, testar o Caça-Desvio no navegador e validar regressão básica antes de commit/push.
+Sincronizar a rodada para o repositório local e validar no navegador com uma lista longa de atividades: botão inferior, botão superior, rolagem automática, foco em Início, persistência e remoção de linhas.
 
 ## Pendências
 - Revisar se o `style.css` existente na raiz ainda possui função ou é legado antes de qualquer remoção.
 - Configurar futuramente um Client ID próprio do Google para o rclone, pois o client compartilhado está em processo de descontinuação.
 
 ## Problemas conhecidos
-- A alteração ainda não foi validada visualmente no navegador nesta rodada.
+- A melhoria de UX ainda não foi validada visualmente no navegador nesta rodada.

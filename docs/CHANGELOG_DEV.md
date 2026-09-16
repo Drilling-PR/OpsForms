@@ -1,5 +1,23 @@
 # OpsForms — Changelog de Desenvolvimento
 
+## 2026-09-16 — SITOP Sondador: inclusão contínua de atividades
+
+### Alterado
+- Adicionado um segundo botão **Adicionar linha** ao final da linha do tempo do SITOP Sondador.
+- Tanto o botão superior quanto o inferior passam a criar a nova linha e levar o usuário diretamente a ela, com foco no campo **Início**.
+- A criação automática/restauração de linhas continua sem deslocar a tela.
+
+### Arquivos afetados
+- `index.html`
+- `js/app.js`
+- `js/forms/sitop-sondador.js`
+- `docs/PROJECT_MEMORY.md`
+- `docs/CHANGELOG_DEV.md`
+- `docs/NEXT.md`
+
+### Motivo
+- Evitar rolagens repetidas entre o topo e o fim da lista quando o turno possui muitas atividades registradas.
+
 ## 2026-09-16 — Caça-Desvio: identificação do colaborador
 
 ### Adicionado

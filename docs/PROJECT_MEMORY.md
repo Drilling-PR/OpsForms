@@ -34,7 +34,7 @@ OpsForms é uma aplicação web estática para gerar registros e reportes operac
 
 1. `sitop` — SITOP / Fiscalização.
 2. `sitopSupervisor` — SITOP - Supervisor.
-3. `sitopSondador` — SITOP - Sondador, com registro de 6 h e linha do tempo em intervalos de 15 min.
+3. `sitopSondador` — SITOP - Sondador, com registro de 6 h e linha do tempo em intervalos de 15 min; a linha do tempo possui ação de adicionar linha no topo e no fim da lista, e novas linhas criadas manualmente recebem foco no campo Início.
 4. `desvio` — Caça-Desvio; o cabeçalho inclui Sonda, Poço, Área/Sistema, Data/Hora, Nome e Matrícula.
 5. `comunicadoEvento` — Comunicado de Evento.
 6. `evento` — Captura de Evento / Lições Aprendidas.

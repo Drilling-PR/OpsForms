@@ -58,7 +58,7 @@
     return removeBtn;
   }
 
-  function addTimelineItem(data = {}) {
+  function addTimelineItem(data = {}, options = {}) {
     const container = byId('sond_timeline_list');
     if (!container) return;
 
@@ -80,6 +80,16 @@
     container.appendChild(item);
 
     attachAutoHandlers(item);
+
+    if (options.focus) {
+      requestAnimationFrame(() => {
+        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        const inicioInput = item.querySelector('.sond_tl_inicio');
+        if (inicioInput) inicioInput.focus({ preventScroll: true });
+      });
+    }
+
+    return item;
   }
 
   function collectTimeline() {
