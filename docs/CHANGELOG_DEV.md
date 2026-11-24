@@ -1,5 +1,26 @@
 # OpsForms — Changelog de Desenvolvimento
 
+## 2026-11-24 — Bomba 3 no SITOP Sondador
+
+- Incluídos status e horas de circulação em **Circulação das bombas**, com o mesmo
+  preenchimento e salvamento local das outras bombas.
+- O texto para copiar ou abrir no WhatsApp inclui `Bomba 3: status | horas` entre a
+  Bomba 2 e as observações quando pelo menos um dos campos é preenchido. Sem dados
+  da Bomba 3, o formato anterior fica intacto.
+
+## 2026-11-24 — Cópia de texto independente do WhatsApp
+
+- Separados **Copiar texto** e **Abrir WhatsApp** no topo e junto à prévia.
+- WhatsApp usa link com o texto canônico, sem esperar a área de transferência nem abrir
+  popup por código. O usuário escolhe a conversa e confirma o envio.
+- Cópia confirma sucesso somente quando a API o confirma; em falha, seleciona a prévia
+  para cópia manual. Cliques repetidos não concorrem; mudança de formulário durante a
+  cópia é avisada. Mantido caminho de copiar/colar para textos longos, sem truncamento.
+- Campos, seis geradores, configuração e persistência não foram alterados.
+- Regressão: `python3 tests/run_export_checks.py`, Chromium isolado file://, dados
+  sintéticos e Clipboard substituído. Sem envio real, commit, push ou publicação.
+
+
 ## 2026-09-16 — SITOP Sondador: inclusão contínua de atividades
 
 ### Alterado

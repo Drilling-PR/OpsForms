@@ -23,10 +23,12 @@
             <option value="pink80">Pink anos 1980</option>
           </select>
         </label>
-        <button id="copyTopBtn" class="primary" type="button">Copiar texto e abrir WhatsApp</button>
+        <button id="copyTopBtn" class="primary" type="button">Copiar texto</button>
+        <a id="whatsAppTopLink" class="button-link" target="_blank" rel="noopener noreferrer" aria-describedby="exportHelp">Abrir WhatsApp</a>
         <button id="clearHeaderBtn" type="button">Limpar cabeçalho</button>
         <button id="clearBodyBtn" type="button">Limpar dados</button>
         <button id="clearAllBtn" class="danger" type="button">Limpar tudo</button>
+        <p id="copyTopFeedback" class="copy-feedback"></p>
       </div>
     </header>
 
@@ -554,6 +556,22 @@
                 <span>Bomba 2 — horas de circulação</span>
                 <input id="sond_b2_horas" data-form="sitopSondador" data-group="body" inputmode="decimal" placeholder="Ex.: 4,5 h" />
               </label>
+
+              <label>
+                <span>Bomba 3 — status</span>
+                <select id="sond_b3_status" data-form="sitopSondador" data-group="body">
+                  <option value="">Selecione...</option>
+                  <option>Ativa</option>
+                  <option>Inativa</option>
+                  <option>Em manutenção</option>
+                  <option>Stand-by</option>
+                </select>
+              </label>
+
+              <label>
+                <span>Bomba 3 — horas de circulação</span>
+                <input id="sond_b3_horas" data-form="sitopSondador" data-group="body" inputmode="decimal" placeholder="Ex.: 4,5 h" />
+              </label>
             </div>
 
             <label>
@@ -972,11 +990,13 @@
           <span id="saveStatus">Salvo localmente</span>
         </div>
 
-        <pre id="outputText"></pre>
+        <pre id="outputText" tabindex="0" aria-label="Texto do reporte para copiar"></pre>
 
         <div class="preview-footer">
-          <button id="copyBottomBtn" class="primary" type="button">Copiar texto e abrir WhatsApp</button>
-          <p id="copyFeedback" aria-live="polite"></p>
+          <button id="copyBottomBtn" class="primary" type="button">Copiar texto</button>
+          <a id="whatsAppBottomLink" class="button-link" target="_blank" rel="noopener noreferrer" aria-describedby="exportHelp">Abrir WhatsApp</a>
+          <p id="copyFeedback" class="copy-feedback" aria-live="polite"></p>
+          <p id="exportHelp" class="export-help">Abrir WhatsApp leva o texto preenchido; você escolhe a conversa e confirma o envio. Se o aplicativo não abrir ou o texto longo não chegar completo, use Copiar texto e cole manualmente. Nenhuma mensagem é enviada automaticamente.</p>
         </div>
       </aside>
     </section>

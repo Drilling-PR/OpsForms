@@ -21,7 +21,11 @@
 
   const outputText = byId('outputText');
   const saveStatus = byId('saveStatus');
-  const copyFeedback = byId('copyFeedback');
+  const copyFeedback = [byId('copyTopFeedback'), byId('copyFeedback')].filter(Boolean);
+  const copyButtons = [byId('copyTopBtn'), byId('copyBottomBtn')].filter(Boolean);
+  const whatsAppLinks = [byId('whatsAppTopLink'), byId('whatsAppBottomLink')].filter(Boolean);
+  let copying = false;
+  let feedbackTimer;
   const themeSelect = byId('themeSelect');
   const THEME_KEY = 'formularios-operacionais-theme-v1';
 
@@ -76,7 +80,11 @@
     evento.toggleActionField();
     evento.updateCriticalityVisual();
     storage.updatePrefsFromFields();
-    outputText.textContent = buildOutput();
+    const text = buildOutput();
+    if (text !== outputText.textContent) showCopyFeedback('');
+    outputText.textContent = text;
+    const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+    whatsAppLinks.forEach(link => { link.href = url; });
     storage.saveState(getActiveFormType());
     saveStatus.textContent = 'Salvo localmente';
   }
@@ -143,32 +151,71 @@
     updateOutput();
   }
 
-  async function copyOutput() {
-    const text = outputText.textContent;
-
-    try {
-      await navigator.clipboard.writeText(text);
-      copyFeedback.textContent = 'Texto copiado.';
-    } catch {
-      const temp = document.createElement('textarea');
-      temp.value = text;
-      document.body.appendChild(temp);
-      temp.select();
-      document.execCommand('copy');
-      document.body.removeChild(temp);
-      copyFeedback.textContent = 'Texto copiado.';
+  function showCopyFeedback(message, isError = false) {
+    clearTimeout(feedbackTimer);
+    copyFeedback.forEach(node => {
+      node.textContent = message;
+      node.dataset.error = String(isError);
+    });
+    if (message && !isError) {
+      feedbackTimer = setTimeout(() => showCopyFeedback(''), 2200);
     }
-
-    setTimeout(() => copyFeedback.textContent = '', 2200);
   }
 
-  async function openWhatsApp() {
+  function legacyCopy(text) {
+    const previousFocus = document.activeElement;
+    const temp = document.createElement('textarea');
+    temp.value = text;
+    temp.setAttribute('readonly', '');
+    temp.style.position = 'fixed';
+    temp.style.left = '-9999px';
+    document.body.appendChild(temp);
+    try {
+      temp.select();
+      temp.setSelectionRange(0, text.length);
+      return document.execCommand('copy') === true;
+    } finally {
+      temp.remove();
+      if (previousFocus) previousFocus.focus({ preventScroll: true });
+    }
+  }
+
+  function selectOutputForManualCopy() {
+    outputText.focus();
+    const range = document.createRange();
+    range.selectNodeContents(outputText);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
+
+  async function copyOutput() {
+    if (copying) return;
     const text = outputText.textContent;
+    copying = true;
+    copyButtons.forEach(button => { button.disabled = true; });
+    showCopyFeedback('Copiando texto…');
+    let copied = false;
+    try {
+      try {
+        await navigator.clipboard.writeText(text);
+        copied = true;
+      } catch {
+        try { copied = legacyCopy(text); } catch { copied = false; }
+      }
 
-    await copyOutput();
-
-    const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
+      if (text !== outputText.textContent) {
+        showCopyFeedback('O formulário mudou durante a cópia. Copie novamente o texto atual antes de colar.', true);
+      } else if (copied) {
+        showCopyFeedback('Texto copiado. Cole no WhatsApp, Teams ou onde preferir.');
+      } else {
+        selectOutputForManualCopy();
+        showCopyFeedback('Não foi possível copiar automaticamente. O texto está selecionado na prévia: use Ctrl+C, ⌘C ou a opção Copiar do dispositivo.', true);
+      }
+    } finally {
+      copying = false;
+      copyButtons.forEach(button => { button.disabled = false; });
+    }
   }
 
   function attachAutoHandlers(root = document) {
@@ -302,8 +349,8 @@
     bindClick('addSondadorTimelineBtn', addSondadorTimelineAndFocus);
     bindClick('addSondadorTimelineBottomBtn', addSondadorTimelineAndFocus);
 
-    bindClick('copyTopBtn', openWhatsApp);
-    bindClick('copyBottomBtn', openWhatsApp);
+    bindClick('copyTopBtn', copyOutput);
+    bindClick('copyBottomBtn', copyOutput);
     bindClick('clearHeaderBtn', () => clearCurrent('header'));
     bindClick('clearBodyBtn', () => clearCurrent('body'));
     bindClick('clearAllBtn', clearCurrentAll);

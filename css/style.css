@@ -262,7 +262,7 @@ body[data-theme="pink80"] h2 {
   white-space: nowrap;
 }
 
-#copyFeedback {
+.copy-feedback {
   color: var(--ok);
   min-height: 20px;
 }
@@ -356,7 +356,8 @@ textarea:focus {
   box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
-button {
+button,
+.button-link {
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 10px 14px;
@@ -366,11 +367,13 @@ button {
   transition: transform 0.08s ease, border-color 0.15s ease, background 0.15s ease;
 }
 
-button:hover {
+button:hover,
+.button-link:hover {
   border-color: var(--accent);
 }
 
-button:active {
+button:active,
+.button-link:active {
   transform: translateY(1px);
 }
 
@@ -589,7 +592,9 @@ button.danger {
   }
 
   .top-actions button,
-  .preview-footer button {
+  .top-actions .button-link,
+  .preview-footer button,
+  .preview-footer .button-link {
     width: 100%;
   }
 
@@ -656,4 +661,33 @@ body[data-theme="light"] button.primary {
 
 .dynamic-item .row.activity-item-row {
   grid-template-columns: minmax(0, 1fr) auto;
+}
+
+/* Export actions do not change the report or its fields. */
+.button-link {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.button-link:focus-visible,
+button:focus-visible,
+#outputText:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.copy-feedback,
+.export-help {
+  flex-basis: 100%;
+  font-size: 13px;
+}
+
+.copy-feedback[data-error="true"] {
+  color: var(--danger);
 }

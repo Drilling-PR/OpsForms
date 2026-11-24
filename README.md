@@ -17,6 +17,26 @@ Atualmente existem 6 reportes funcionais:
 
 O rascunho dos formulários é salvo no navegador via `localStorage`.
 
+## Copiar ou abrir WhatsApp
+
+As duas ações aparecem no topo e junto à prévia:
+
+- **Copiar texto** copia o reporte sem abrir outro aplicativo. Também serve para Teams.
+- **Abrir WhatsApp** abre um link com o mesmo texto preenchido. Você escolhe a conversa
+  e confirma o envio; o app não envia mensagens automaticamente.
+
+Se o navegador negar a cópia automática, a prévia fica selecionada para copiar manualmente.
+Se o WhatsApp não abrir ou não receber todo um texto longo, use **Copiar texto** e cole
+na conversa. Não há corte, abreviação ou limite de tamanho inventado pelo OpsForms.
+Os campos e o formato dos seis reportes permanecem iguais para os consumidores existentes.
+
+Regressão reproduzível: `python3 tests/run_export_checks.py` (Python 3, Git e Chromium).
+O teste compara os seis geradores com o commit anterior, mantém todos os campos e testa
+os dois pontos de exportação, mensagens longas, falhas de cópia e mudança de formulário
+com uma cópia pendente. Usa dados sintéticos e perfis temporários. Clipboard é simulado
+na fronteira e nenhuma navegação ao WhatsApp é executada; a entrega no aplicativo real
+continua dependendo do navegador/dispositivo do usuário.
+
 ---
 
 ## Estrutura modular atual

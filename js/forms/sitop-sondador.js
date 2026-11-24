@@ -149,6 +149,11 @@
     text += `*Circulação das bombas*\n`;
     text += `Bomba 1: ${value('sond_b1_status') || '-'} | ${value('sond_b1_horas') || '-'}\n`;
     text += `Bomba 2: ${value('sond_b2_status') || '-'} | ${value('sond_b2_horas') || '-'}\n`;
+    const bomba3Status = value('sond_b3_status');
+    const bomba3Horas = value('sond_b3_horas');
+    if (bomba3Status || bomba3Horas) {
+      text += `Bomba 3: ${bomba3Status || '-'} | ${bomba3Horas || '-'}\n`;
+    }
     text += `Obs bombas: ${value('sond_bombas_obs') || '-'}\n\n`;
 
     text += `*Atividades paralelas*\n${value('sond_atividades_paralelas') || '-'}\n\n`;
